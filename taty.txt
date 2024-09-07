@@ -1,0 +1,49 @@
+// Matriz 3D: ciudades x días de la semana x semanas
+let temperaturas = [
+  // Ciudad 1
+  [
+    [20, 22, 21, 23, 19, 25, 26], // Semana 1
+    [24, 23, 22, 21, 20, 19, 18], // Semana 2
+    [22, 21, 23, 24, 25, 26, 27]  // Semana 3
+  ],
+  // Ciudad 2
+  [
+    [30, 31, 32, 33, 34, 35, 36],
+    [36, 35, 34, 33, 32, 31, 30],
+    [31, 32, 33, 34, 35, 36, 37]
+  ]
+  // Puedes agregar más ciudades y semanas si es necesario
+];
+
+// Función para calcular el promedio de temperaturas por semana
+function calcularPromedios(temperaturas) {
+  let promedios = [];
+
+  for (let ciudad = 0; ciudad < temperaturas.length; ciudad++) {
+    promedios[ciudad] = [];
+
+    for (let semana = 0; semana < temperaturas[ciudad].length; semana++) {
+      let suma = 0;
+
+      for (let dia = 0; dia < temperaturas[ciudad][semana].length; dia++) {
+        suma += temperaturas[ciudad][semana][dia];
+      }
+
+      let promedio = suma / temperaturas[ciudad][semana].length;
+      promedios[ciudad].push(promedio);
+    }
+  }
+
+  return promedios;
+}
+
+// Mostrar los promedios
+let promediosTemperaturas = calcularPromedios(temperaturas);
+
+for (let ciudad = 0; ciudad < promediosTemperaturas.length; ciudad++) {
+  console.log(`Promedios de temperatura para la ciudad ${ciudad + 1}:`);
+  
+  for (let semana = 0; semana < promediosTemperaturas[ciudad].length; semana++) {
+    console.log(`  Semana ${semana + 1}: ${promediosTemperaturas[ciudad][semana].toFixed(2)}°C`);
+  }
+}
